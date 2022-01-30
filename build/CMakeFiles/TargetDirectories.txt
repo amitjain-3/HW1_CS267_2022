@@ -1,0 +1,6 @@
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/rebuild_cache.dir
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/edit_cache.dir
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/benchmark-blocked.dir
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/benchmark-blas.dir
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/benchmark.dir
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/benchmark-naive.dir
