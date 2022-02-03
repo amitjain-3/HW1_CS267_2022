@@ -10,9 +10,9 @@ const char* dgemm_desc = "Simple blocked dgemm.";
 //#include "avxintrin-emu.h"
 
 #ifndef L1_BLOCK
-#define L3_BLOCK 1152
-#define L2_BLOCK 256
-#define L1_BLOCK 96
+#define L2_BLOCK 1152
+#define L1_BLOCK 256
+#define REG_BLOCK 96
 #endif
 
 
@@ -46,7 +46,6 @@ static inline void do_block_trial (int lda, int M, int N, int K, double* A, doub
 
       for (i = 0; i < M; i += 8)
       {
-
 
         b_00 = _mm512_set1_pd(*(B+k+j*lda));
         b_01 = _mm512_set1_pd(*(B+k+(j+1)*lda));
@@ -112,17 +111,17 @@ static inline void L1_blocking_level (int lda, int M, int N, int K, double* A, d
 {
   /* Accumulate block dgemms into block of C */
     /* For each block-row of A */
-  for (int i = 0; i < M; i += L1_BLOCK)
+  for (int j = 0; j < N; j += REG_BLOCK)
   {
     /* For each block-column of B */
-    for (int j = 0; j < N; j += L1_BLOCK)
+    for (int k = 0; k < K; k += REG_BLOCK) 
     {
-      for (int k = 0; k < K; k += L1_BLOCK)
+      for (int i = 0; i < M; i += REG_BLOCK)
       {
         /* Correct block dimensions if block "goes off edge of" the matrix */
-        int M1 = min (L1_BLOCK, M-i);
-        int N1 = min (L1_BLOCK, N-j);
-        int K1 = min (L1_BLOCK, K-k);
+        int M1 = min (REG_BLOCK, M-i);
+        int N1 = min (REG_BLOCK, N-j);
+        int K1 = min (REG_BLOCK, K-k);
 
         /* Perform individual block dgemm */
         do_block_trial(lda, M1, N1, K1, A+i+k*lda, B + k + j*lda, C + i + j*lda);
@@ -135,10 +134,10 @@ static inline void L2_blocking_level (int lda, int M, int N, int K, double* A, d
 {
   /* Accumulate block dgemms into block of C */
     /* For each block-row of A */
-  for (int k = 0; k < K; k += L2_BLOCK)
+  for (int j = 0; j < N; j += L2_BLOCK)
   {
     /* For each block-column of B */
-    for (int j = 0; j < N; j += L2_BLOCK)
+    for (int k = 0; k < K; k += L2_BLOCK)
     {
       for (int i = 0; i < M; i += L2_BLOCK)
       {
@@ -199,18 +198,18 @@ void square_dgemm (int lda, double* A, double* B, double* C)
 
 
   /* For each block-column of B */
-  for (int j = 0; j < lda_u; j += L3_BLOCK)
+  for (int j = 0; j < lda_u; j += L1_BLOCK)
   {
     /* Accumulate block dgemms into block of C */
-    for (int i = 0; i < lda_u; i += L3_BLOCK)
+    for (int i = 0; i < lda_u; i += L1_BLOCK)
     {
       /* For each block-row of A */ 
-      for (int k = 0; k < lda_u; k += L3_BLOCK)
+      for (int k = 0; k < lda_u; k += L1_BLOCK)
       {
           /* Correct block dimensions if block "goes off edge of" the matrix */
-          int M = min (L3_BLOCK, lda_u-i);
-          int N = min (L3_BLOCK, lda_u-j);
-          int K = min (L3_BLOCK, lda_u-k);
+          int M = min (L1_BLOCK, lda_u-i);
+          int N = min (L1_BLOCK, lda_u-j);
+          int K = min (L1_BLOCK, lda_u-k);
           /* Perform individual block dgemm */
           //double Row_major_A[M * K];
           //transpose_row(Row_major_A,A,k*lda_u + i,K,M,lda_u);
