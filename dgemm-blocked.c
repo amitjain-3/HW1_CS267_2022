@@ -172,11 +172,16 @@ void square_dgemm (int lda, double* A, double* B, double* C)
   // for (int i = 0; i < N; i++)
   //     for (int j = 0; j < N; j++)
   //         B[i][j] = A[j][i];
+  int powers_of_2[] = {2,4,8,16,32,64,128,256,512,1024};
 
   int lda_u = lda; 
   if (lda % 8){ 
       lda_u = lda + (8 - (lda % 8));
   } 
+
+  if (lda_u == powers_of_2[4] || lda_u == powers_of_2[5] || lda_u == powers_of_2[6] || lda_u == powers_of_2[7] || lda_u == powers_of_2[8] || lda_u == powers_of_2[9]){
+    lda_u += 8;
+  }
 
   double *Apadded = _mm_malloc(sizeof(double)*lda_u*lda_u, 64); // certain instructions (SIMD) work on contiguous segments of 8 double words
   double *Bpadded = _mm_malloc(sizeof(double)*lda_u*lda_u, 64);
