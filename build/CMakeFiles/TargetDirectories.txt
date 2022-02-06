@@ -1,6 +1,12 @@
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/install/strip.dir
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/install.dir
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/list_install_components.dir
 /global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/rebuild_cache.dir
 /global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/edit_cache.dir
-/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/benchmark-blocked.dir
 /global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/benchmark-blas.dir
 /global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/benchmark.dir
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/package.dir
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/package_source.dir
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/install/local.dir
 /global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/benchmark-naive.dir
+/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles/benchmark-blocked.dir

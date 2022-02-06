@@ -1,0 +1,2 @@
+/global/homes/a/amitjain/HW1_CS267_2022/build/_CPack_Packages/Linux/TGZ/cs267Group35_hw1/./dgemm-blocked.c
+/global/homes/a/amitjain/HW1_CS267_2022/build/_CPack_Packages/Linux/TGZ/cs267Group35_hw1/./cs267Group35_hw1.pdf

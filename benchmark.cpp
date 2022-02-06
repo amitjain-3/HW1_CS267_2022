@@ -39,7 +39,6 @@ int main(int argc, char** argv) {
     std::cout << std::fixed << std::setprecision(2);
 
     /* Test sizes should highlight performance dips at multiples of certain powers-of-two */
-
 #ifdef ALL_SIZES
     /* Multiples-of-32, +/- 1. */
     std::vector<int> test_sizes{

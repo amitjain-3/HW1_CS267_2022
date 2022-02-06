@@ -63,10 +63,10 @@ CMAKE_BINARY_DIR = /global/homes/a/amitjain/HW1_CS267_2022/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/benchmark-blocked.dir/all
 all: CMakeFiles/benchmark-blas.dir/all
 all: CMakeFiles/benchmark.dir/all
 all: CMakeFiles/benchmark-naive.dir/all
+all: CMakeFiles/benchmark-blocked.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -74,37 +74,11 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/benchmark-blocked.dir/clean
 clean: CMakeFiles/benchmark-blas.dir/clean
 clean: CMakeFiles/benchmark.dir/clean
 clean: CMakeFiles/benchmark-naive.dir/clean
+clean: CMakeFiles/benchmark-blocked.dir/clean
 .PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/benchmark-blocked.dir
-
-# All Build rule for target.
-CMakeFiles/benchmark-blocked.dir/all: CMakeFiles/benchmark.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark-blocked.dir/build.make CMakeFiles/benchmark-blocked.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark-blocked.dir/build.make CMakeFiles/benchmark-blocked.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles --progress-num=4,5 "Built target benchmark-blocked"
-.PHONY : CMakeFiles/benchmark-blocked.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/benchmark-blocked.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles 3
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/benchmark-blocked.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles 0
-.PHONY : CMakeFiles/benchmark-blocked.dir/rule
-
-# Convenience name for target.
-benchmark-blocked: CMakeFiles/benchmark-blocked.dir/rule
-.PHONY : benchmark-blocked
-
-# clean rule for target.
-CMakeFiles/benchmark-blocked.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark-blocked.dir/build.make CMakeFiles/benchmark-blocked.dir/clean
-.PHONY : CMakeFiles/benchmark-blocked.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/benchmark-blas.dir
@@ -183,6 +157,32 @@ benchmark-naive: CMakeFiles/benchmark-naive.dir/rule
 CMakeFiles/benchmark-naive.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark-naive.dir/build.make CMakeFiles/benchmark-naive.dir/clean
 .PHONY : CMakeFiles/benchmark-naive.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/benchmark-blocked.dir
+
+# All Build rule for target.
+CMakeFiles/benchmark-blocked.dir/all: CMakeFiles/benchmark.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark-blocked.dir/build.make CMakeFiles/benchmark-blocked.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark-blocked.dir/build.make CMakeFiles/benchmark-blocked.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles --progress-num=4,5 "Built target benchmark-blocked"
+.PHONY : CMakeFiles/benchmark-blocked.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/benchmark-blocked.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/benchmark-blocked.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /global/homes/a/amitjain/HW1_CS267_2022/build/CMakeFiles 0
+.PHONY : CMakeFiles/benchmark-blocked.dir/rule
+
+# Convenience name for target.
+benchmark-blocked: CMakeFiles/benchmark-blocked.dir/rule
+.PHONY : benchmark-blocked
+
+# clean rule for target.
+CMakeFiles/benchmark-blocked.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark-blocked.dir/build.make CMakeFiles/benchmark-blocked.dir/clean
+.PHONY : CMakeFiles/benchmark-blocked.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

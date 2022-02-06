@@ -65,6 +65,39 @@ CMAKE_BINARY_DIR = /global/homes/a/amitjain/HW1_CS267_2022/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/global/common/cori_cle7/software/cmake/3.21.3/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/global/common/cori_cle7/software/cmake/3.21.3/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/global/common/cori_cle7/software/cmake/3.21.3/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/global/common/cori_cle7/software/cmake/3.21.3/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -84,6 +117,38 @@ edit_cache:
 # Special rule for the target edit_cache
 edit_cache/fast: edit_cache
 .PHONY : edit_cache/fast
+
+# Special rule for the target package
+package: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool..."
+	/global/common/cori_cle7/software/cmake/3.21.3/bin/cpack --config ./CPackConfig.cmake
+.PHONY : package
+
+# Special rule for the target package
+package/fast: package
+.PHONY : package/fast
+
+# Special rule for the target package_source
+package_source:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Run CPack packaging tool for source..."
+	/global/common/cori_cle7/software/cmake/3.21.3/bin/cpack --config ./CPackSourceConfig.cmake /global/homes/a/amitjain/HW1_CS267_2022/build/CPackSourceConfig.cmake
+.PHONY : package_source
+
+# Special rule for the target package_source
+package_source/fast: package_source
+.PHONY : package_source/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/global/common/cori_cle7/software/cmake/3.21.3/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/global/common/cori_cle7/software/cmake/3.21.3/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -115,19 +180,6 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-#=============================================================================
-# Target rules for targets named benchmark-blocked
-
-# Build rule for target.
-benchmark-blocked: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 benchmark-blocked
-.PHONY : benchmark-blocked
-
-# fast build rule for target.
-benchmark-blocked/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark-blocked.dir/build.make CMakeFiles/benchmark-blocked.dir/build
-.PHONY : benchmark-blocked/fast
 
 #=============================================================================
 # Target rules for targets named benchmark-blas
@@ -167,6 +219,19 @@ benchmark-naive: cmake_check_build_system
 benchmark-naive/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark-naive.dir/build.make CMakeFiles/benchmark-naive.dir/build
 .PHONY : benchmark-naive/fast
+
+#=============================================================================
+# Target rules for targets named benchmark-blocked
+
+# Build rule for target.
+benchmark-blocked: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 benchmark-blocked
+.PHONY : benchmark-blocked
+
+# fast build rule for target.
+benchmark-blocked/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark-blocked.dir/build.make CMakeFiles/benchmark-blocked.dir/build
+.PHONY : benchmark-blocked/fast
 
 benchmark.o: benchmark.cpp.o
 .PHONY : benchmark.o
@@ -271,6 +336,12 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
+	@echo "... package"
+	@echo "... package_source"
 	@echo "... rebuild_cache"
 	@echo "... benchmark"
 	@echo "... benchmark-blas"

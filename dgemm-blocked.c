@@ -23,8 +23,22 @@ const char* dgemm_desc = "Simple blocked dgemm.";
  *  C := C + A * B
  * where C is M-by-N, A is M-by-K, and B is K-by-N. */
 
+// static void do_block(int lda, int M, int N, int K, double* A, double* B, double* C) {
+//     // For each row i of A
+//     for (int i = 0; i < M; ++i) {
+//         // For each column j of B
+//         for (int j = 0; j < N; ++j) {
+//             // Compute C(i,j)
+//             double cij = C[i + j * lda];
+//             for (int k = 0; k < K; ++k) {
+//                 cij += A[i + k * lda] * B[k + j * lda];
+//             }
+//             C[i + j * lda] = cij;
+//         }
+//     }
+// }
 
-static inline void do_block_trial (int lda, int M, int N, int K, double* A, double* B, double* C)
+static inline void do_microkernel (int lda, int M, int N, int K, double* A, double* B, double* C)
 {
 
 
@@ -124,7 +138,7 @@ static inline void L1_blocking_level (int lda, int M, int N, int K, double* A, d
         int K1 = min (REG_BLOCK, K-k);
 
         /* Perform individual block dgemm */
-        do_block_trial(lda, M1, N1, K1, A+i+k*lda, B + k + j*lda, C + i + j*lda);
+        do_microkernel(lda, M1, N1, K1, A+i+k*lda, B + k + j*lda, C + i + j*lda);
       }
     }
   }
